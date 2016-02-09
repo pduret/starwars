@@ -34,3 +34,38 @@ var quotes = [{
   'author': '- Darth Vader',
   'quote': 'The Force is strong with this one.'
 }];
+var random = Math.round(Math.random() * quotes.length);
+
+ReactDOM.render(
+  React.createElement('h4', null, quotes[random].quote),
+  document.getElementById('randomquote')
+);
+ReactDOM.render(
+  React.createElement('h4', null, quotes[random].author),
+  document.getElementById('quoteauthor')
+);
+
+var arrayAuthors = [];
+var string = "";
+for (var i=0; i <=quotes.length - 1 ; i++)
+{
+	string = quotes[i].author;
+	arrayAuthors.push(string.toLowerCase());
+}
+var cleanedarray = cleanArray(arrayAuthors);
+
+ReactDOM.render(
+  React.createElement('h4', null, cleanedarray.length),
+  document.getElementById('quoteauthor1')
+);
+//cleanArray removes all duplicated elements
+function cleanArray(array) {
+  var i, j, len = array.length, out = [], obj = {};
+  for (i = 0; i < len; i++) {
+    obj[array[i]] = 0;
+  }
+  for (j in obj) {
+    out.push(j);
+  }
+  return out;
+}
